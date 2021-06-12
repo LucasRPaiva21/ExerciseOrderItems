@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using OrderItemsEx.Entities.Enums;
 using System.Collections.Generic;
 using System.Text;
@@ -43,6 +44,22 @@ namespace OrderItemsEx.Entities
             }
 
             return sum;
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("Order moment: " + Moment.ToString("dd/MM/yyyy HH:mm:ss"));
+            sb.AppendLine("Order status: " + Status);
+            sb.AppendLine("Client: " + Client);
+            sb.AppendLine("Order items: ");
+            foreach(OrderItem o in Orders)
+            {
+                sb.AppendLine(o.Product.Name + ", $" + o.Price.ToString("F2", CultureInfo.InvariantCulture) + ", Quantity: " + o.Quantity + ", Subtotal: $" + o.SubTotal().ToString("F2", CultureInfo.InvariantCulture));
+            }
+            sb.AppendLine("Total price: $" + Total().ToString("F2", CultureInfo.InvariantCulture));
+
+            return sb.ToString();
         }
     }
 }
