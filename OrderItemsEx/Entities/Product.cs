@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace OrderItemsEx.Entities
+﻿namespace OrderItemsEx.Entities
 {
     class Product
     {
